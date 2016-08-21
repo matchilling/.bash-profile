@@ -1,0 +1,13 @@
+#------------------------------------------------------------------------------
+# Custom aliases
+#------------------------------------------------------------------------------
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias c='clear'
+alias ch='history -c && clear'
+alias www='/usr/bin/google-chrome-stable about:blank'
+alias srm='shred -u'
+alias prettyjson='python -m json.tool'
