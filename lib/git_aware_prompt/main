@@ -1,0 +1,4 @@
+readonly GIT_AWARE_PROMPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+source "$GIT_AWARE_PROMPT_DIR/colors"
+source "$GIT_AWARE_PROMPT_DIR/prompt"
