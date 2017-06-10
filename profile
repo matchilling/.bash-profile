@@ -2,7 +2,7 @@
 # Custom bash profile stuff ...
 #------------------------------------------------------------------------------
 
-readonly INCLUDE_PATH=~/bash_profile
+readonly INCLUDE_PATH=~/.bash_profile
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
