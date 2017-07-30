@@ -1,0 +1,62 @@
+#!/usr/bin/env sh
+# -----------------------------------------------------------------------------
+# GIT author stats
+# -----------------------------------------------------------------------------
+#       Language: shell
+#        Version: 0.1.0
+#     Maintainer: Mathias Schilling <m@matchilling.com>
+#        License: GPL-3.0
+#  Last Modified: Sun 30 Jul 11:58:30 BST 2017
+#     Repository: https://github.com/matchilling/.bash_profile
+#           Bugs: https://github.com/matchilling/.bash_profile/issues
+# -----------------------------------------------------------------------------
+usage=$(cat <<EOF
+NAME        GIT author stats\n
+SYNOPSIS    $(basename "$0") <root_dir> [-h]\n
+DESCRIPTION Script iterates over a given directory recursively and prints file
+            changes, line insertions and line deletions per author if the sub
+            directory is a git repository.\n
+ARGUMENTS
+    -h  show this help text
+EOF
+)
+
+while getopts ':hs:' option; do
+  case "$option" in
+    h) echo "$usage"
+       exit 0
+       ;;
+   \?) printf "Illegal option: -%s\n" "$OPTARG" >&2
+       exit 1
+       ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+command -v git --version >/dev/null 2>&1 || {
+   echo >&2 "Please install git (c.f. https://git-scm.com/download) before continuing."
+   exit 1
+}
+
+if [ -z "$1" ]; then
+  readonly ROOT_DIR=$(cd "$(dirname "$0")" && pwd)
+else
+  readonly ROOT_DIR=$(readlink -f $1)
+fi
+
+for MODULE_DIR in $(find $ROOT_DIR/ -maxdepth 1 -mindepth 1 -type d); do
+  if [ ! -d "$MODULE_DIR/.git/" ]; then
+    continue
+  fi
+
+  REPO_NAME=$(git -C $MODULE_DIR config --get remote.origin.url)
+  AUTHOR_EMAILS=$(git -C $MODULE_DIR log --format='%ae' | sort -u)
+
+  for AUTHOR_EMAIL in $AUTHOR_EMAILS; do
+    STATS=$(git -C "$MODULE_DIR" log --shortstat --author="$AUTHOR_EMAIL" \
+       | grep "files\? changed" \
+       | awk '{files+=$1; inserted+=$4; deleted+=$6} END \
+              {print files, inserted, deleted}')
+    echo "$REPO_NAME $AUTHOR_EMAIL $STATS"
+  done
+done
