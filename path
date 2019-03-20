@@ -1,3 +1,3 @@
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="$HOME/.bash_profile/bin:$PATH"
-export PATH="~.local/bin:$PATH"
+#!/bin/bash
+
+export PATH="$BASH_PROFILE_PATH/bin:$PATH"

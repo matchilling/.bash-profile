@@ -7,8 +7,8 @@
 #     Maintainer: Mathias Schilling <m@matchilling.com>
 #        License: GPL-3.0
 #  Last Modified: Fri  4 Aug 10:40:33 BST 2017
-#     Repository: https://github.com/matchilling/.bash_profile
-#           Bugs: https://github.com/matchilling/.bash_profile/issues
+#     Repository: https://github.com/matchilling/.bash-profile
+#           Bugs: https://github.com/matchilling/.bash-profile/issues
 # -----------------------------------------------------------------------------
 usage=$(cat <<EOF
 NAME        GIT clone\n
