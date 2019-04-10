@@ -15,6 +15,10 @@ if [ "${OS}" = "Darwin" ] ; then
   source "$BASH_PROFILE_PATH/platform/darwin.sh"
 fi
 
+if [ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
+
 # completion
 source "$BASH_PROFILE_PATH/completion/git.sh"
 source "$BASH_PROFILE_PATH/completion/vagrant.sh"
