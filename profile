@@ -19,6 +19,13 @@ if [ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
   source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
 
+# source client directory
+if [ -d "$BASH_PROFILE_PATH/client" ]; then
+  for FILE in $(find "$BASH_PROFILE_PATH/client" -type f ! -iname ".sh" | sort -z); do
+    source "$FILE"
+  done
+fi
+
 # completion
 source "$BASH_PROFILE_PATH/completion/git.sh"
 source "$BASH_PROFILE_PATH/completion/vagrant.sh"

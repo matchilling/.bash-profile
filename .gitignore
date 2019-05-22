@@ -1,0 +1,3 @@
+# Ignore files in client directory
+client/*
+!/**/.gitkeep
