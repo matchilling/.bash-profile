@@ -10,8 +10,7 @@ source "$BASH_PROFILE_PATH/util"
 source "$BASH_PROFILE_PATH/aliases"
 source "$BASH_PROFILE_PATH/path"
 
-readonly OS=$(uname)
-if [ "${OS}" = "Darwin" ] ; then
+if [ "$(uname -s)" = "Darwin" ] ; then
   source "$BASH_PROFILE_PATH/platform/darwin.sh"
 fi
 

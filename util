@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 timestamp() {
     date "+%Y-%m-%d %H:%M:%S"
@@ -6,4 +6,25 @@ timestamp() {
 
 print_with_color() {
     echo -e "$2[`timestamp`] $1$COLOR_RESET"
+}
+
+#######################################
+# Opens URL (1st argument) and copies
+# the 2nd one to the users' clipboard
+# Arguments:
+#   URL
+#   Something else
+# Returns:
+#   None
+#######################################
+open_url_and_copy_to_clipboard() {
+  OSTYPE=$(uname)
+
+  if [ "${OSTYPE}" = "Darwin" ] ; then
+    open "$1" && echo "$2" | pbcopy
+  fi
+  if [ "${OSTYPE}" = "Linux" ] ; then
+    echo >&2 "Not implemented yet."
+    exit 1
+  fi
 }
