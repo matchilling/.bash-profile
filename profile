@@ -27,6 +27,7 @@ fi
 
 # completion
 source "$BASH_PROFILE_PATH/completion/git.sh"
+source "$BASH_PROFILE_PATH/completion/kubectl.sh"
 source "$BASH_PROFILE_PATH/completion/maven.sh"
 source "$BASH_PROFILE_PATH/completion/vagrant.sh"
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
